@@ -58,10 +58,10 @@ func (controller *JadwalControllerImpl) GetListJadwalController(c echo.Context) 
 	getJadwalController, errGetJadwalController := controller.jadwalService.GetJadwalList()
 
 	if errGetJadwalController != nil {
-		return c.JSON(http.StatusInternalServerError, model.ResponseToClient(http.StatusInternalServerError, "error", errGetJadwalController.Error()))
+		return c.JSON(http.StatusInternalServerError, model.ResponseToClient(http.StatusInternalServerError, false, "error", errGetJadwalController.Error()))
 	}
 
-	return c.JSON(http.StatusOK, model.ResponseToClient(http.StatusOK,  "berhasil melihat seluruh list User", getJadwalController))
+	return c.JSON(http.StatusOK, model.ResponseToClient(http.StatusOK, true,  "berhasil melihat seluruh list User", getJadwalController))
 }
 
 func (controller *JadwalControllerImpl) GetJadwalByIdController(c echo.Context) error{
@@ -70,8 +70,8 @@ func (controller *JadwalControllerImpl) GetJadwalByIdController(c echo.Context) 
 	getJadwalIdController, errGetJadwalController := controller.jadwalService.GetJadwalById(id)
 
 	if errGetJadwalController != nil {
-		return c.JSON(http.StatusInternalServerError, model.ResponseToClient(http.StatusInternalServerError, "error", errGetJadwalController.Error()))
+		return c.JSON(http.StatusInternalServerError, model.ResponseToClient(http.StatusInternalServerError, false, "error", errGetJadwalController.Error()))
 	}
 
-	return c.JSON(http.StatusOK, model.ResponseToClient(http.StatusOK,  "berhasil melihat satu id", getJadwalIdController))
+	return c.JSON(http.StatusOK, model.ResponseToClient(http.StatusOK, true,  "berhasil melihat satu id", getJadwalIdController))
 }

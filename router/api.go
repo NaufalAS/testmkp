@@ -41,7 +41,7 @@ func Approuter(prefix string, e *echo.Echo) {
 	jadwalRoute.POST("/save", jadwalController.JadwalController, JWTProtection())
 	jadwalRoute.DELETE("/:id", jadwalController.DeleteJadwal, JWTProtection())
 	jadwalRoute.GET("/list", jadwalController.GetListJadwalController)
-	jadwalRoute.GET("/:id", jadwalController.DeletGetJadwalByIdControllereJadwal)
+	jadwalRoute.GET("/:id", jadwalController.GetJadwalByIdController)
 }
 
 func JWTProtection() echo.MiddlewareFunc {

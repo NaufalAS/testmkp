@@ -26,16 +26,10 @@ func (service *JadwalServiceImpl) SaveJadwal(request web.CreateScheduleRequest) 
 		return nil, fmt.Errorf("invalid start_time format: %v", err)
 	}
 
-	endTime, err := time.Parse(time.RFC3339, request.EndTime)
-	if err != nil {
-		return nil, fmt.Errorf("invalid end_time format: %v", err)
-	}
-
 	jadwal := domain.Schedule{
 		MovieID:      request.MovieID,
 		CinemaID:     request.CinemaID,
 		StartTime:    startTime,
-		EndTime:      endTime,
 		ScreenNumber: request.ScreenNumber,
 		IsCancel:     request.IsCancel,
 	}
@@ -51,7 +45,6 @@ func (service *JadwalServiceImpl) SaveJadwal(request web.CreateScheduleRequest) 
 		"movie_id":      savejadwal.MovieID,
 		"cinema_id":     savejadwal.CinemaID,
 		"start_time":    savejadwal.StartTime.Format(time.RFC3339),
-		"end_time":      savejadwal.EndTime.Format(time.RFC3339),
 		"screen_number": savejadwal.ScreenNumber,
 		"is_cancel":     savejadwal.IsCancel,
 	}
