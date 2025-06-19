@@ -38,9 +38,8 @@ func Approuter(prefix string, e *echo.Echo) {
 	authRoute.POST("/login", userAuthController.LoginUser)
 
 	jadwalRoute := g.Group("/jadwal")
-	jadwalRoute.POST("/save", jadwalController.JadwalController)
-	jadwalRoute.POST("/:id", jadwalController.DeleteJadwal)
-
+	jadwalRoute.POST("/save", jadwalController.JadwalController, JWTProtection())
+	jadwalRoute.DELETE("/:id", jadwalController.DeleteJadwal, JWTProtection())
 }
 
 func JWTProtection() echo.MiddlewareFunc {
