@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS transactionitem;
+DROP TABLE IF EXISTS transaction;
+DROP TABLE IF EXISTS seat;
+DROP TABLE IF EXISTS shcedule;
+DROP TABLE IF EXISTS film;
+DROP TABLE IF EXISTS cinemas;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS city;
+
+
+DROP TYPE IF EXISTS seat_status;
+DROP TYPE IF EXISTS transaction_status;
