@@ -3,6 +3,7 @@ package jadwalservice
 import (
 	"fmt"
 	"mkptest/model/domain"
+	"mkptest/model/entity"
 	"mkptest/model/web"
 	jadwalrepo "mkptest/repository/jadwal"
 	"time"
@@ -57,7 +58,6 @@ func (service *JadwalServiceImpl) SaveJadwal(request web.CreateScheduleRequest) 
 	return data, nil
 }
 
-
 func (service *JadwalServiceImpl) DeleteJadwal(id int) error {
 	err := service.jadwalrepo.DeleteScheduleByID(id)
 	if err != nil {
@@ -67,4 +67,24 @@ func (service *JadwalServiceImpl) DeleteJadwal(id int) error {
 		return err
 	}
 	return nil
+}
+
+func (service *JadwalServiceImpl) GetJadwalList() ([]entity.JadwalEntity, error) {
+	getJadwalList, err := service.jadwalrepo.GetListSchedule()
+	if err != nil {
+		return nil, err
+	}
+
+	JadwalEntitie := entity.ToJadwalListEntity(getJadwalList)
+
+	return JadwalEntitie, nil
+}
+
+func (service *JadwalServiceImpl) GetJadwalById(id int) (entity.JadwalEntity, error) {
+	getUserService, err := service.jadwalrepo.GetJadwalById(id)
+	if err != nil {
+		return entity.JadwalEntity{}, err
+	}
+
+	return entity.ToJadwalEntity(getUserService), nil
 }

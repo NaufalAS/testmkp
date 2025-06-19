@@ -34,3 +34,22 @@ func (repo *JadwalRepositoryImpl) DeleteScheduleByID(id int) error {
 	}
 	return nil
 }
+
+func (repo *JadwalRepositoryImpl) GetListSchedule() ([]domain.Schedule, error) {
+	var jadwal []domain.Schedule
+	err := repo.DB.Find(&jadwal).Error
+	if err != nil {
+		return nil, err
+	}
+	return jadwal, nil
+}
+
+func(repo *JadwalRepositoryImpl) GetJadwalById(id int)(domain.Schedule, error){
+	var jadwal domain.Schedule
+
+	if err := repo.DB.Find(&jadwal,"id = ?", id).Error; err != nil{
+		return jadwal, err
+	}
+
+	return jadwal, nil
+}
