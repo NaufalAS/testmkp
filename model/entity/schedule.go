@@ -1,23 +1,27 @@
 package entity
 
-import "mkptest/model/domain"
+import (
+	"mkptest/model/domain"
+	"time"
+)
 
 type JadwalEntity struct {
 	JadwalID int    `json:"id"`
-	MovieID   string `json:"name"`
-	CinemaID  string `json:"email"`
-	StartTime   string `json:"role"`
-	EndTime
-	ScreenNumber
-	IsCancel
+	MovieID   int `json:"name"`
+	CinemaID  int `json:"email"`
+	StartTime   time.Time `json:"role"`
+	ScreenNumber int `json:"screen_number"`
+	IsCancel  bool `json:"is_cancle"`
 }
 
 func ToJadwalEntity(jadwal domain.Schedule) JadwalEntity {
 	return JadwalEntity{
-		jadwalID: jadwal.ID,
-		Name:   jadwal.Name,
-		Email:  jadwal.Email,
-		Role:   jadwal.Role,
+		JadwalID: jadwal.ID,
+		MovieID:   jadwal.MovieID,
+		CinemaID:  jadwal.CinemaID,
+		StartTime:   jadwal.StartTime,
+		ScreenNumber: jadwal.ScreenNumber,
+		IsCancel: jadwal.IsCancel,
 	}
 }
 
