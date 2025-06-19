@@ -27,6 +27,7 @@ func main() {
 	}
 
 	r := echo.New()
+	r.Validator = &CustomValidator{validator: validator.New()}
 	r.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins: []string{"*"},
 		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept},
